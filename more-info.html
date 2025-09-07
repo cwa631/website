@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Me</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Background fade-in */
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Cross icon rotation and fade */
+    @keyframes rotateFadeIn {
+      0% {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+      }
+
+      100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    /* Tag hover effect */
+    .tag:hover {
+      background-color: #0ea5e9;
+      color: white;
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    /* Floating animation for image container */
+    @keyframes floatUpDown {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* Scrollbar hidden for tags container */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+  <!-- Cross Icon Fixed Top-Right -->
+  <button aria-label="Close" id="closeBtn"
+    class="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-gray-800 border border-gray-600 flex items-center justify-center shadow-md hover:bg-gray-700 active:scale-90 transition-transform"
+    style="animation: rotateFadeIn 0.8s forwards;">
+    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round" />
+      <line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <!-- Container -->
+  <section
+    class="bg-gray-900 bg-opacity-90 max-w-7xl w-full rounded-xl relative overflow-hidden shadow-lg flex flex-col md:flex-row gap-10 md:gap-20 p-8 md:p-16 animate-fadeInScale"
+    style="animation-name: fadeInScale; animation-duration: 1.2s; animation-fill-mode: forwards;">
+
+    <!-- Left side intro -->
+    <div class="flex-1 z-10 flex flex-col justify-start text-white max-w-xl">
+      <h2 class="text-3xl md:text-4xl font-semibold text-sky-500 mb-6 tracking-wide select-none">𝐀𝐁𝐎𝐔𝐓 𝐌𝐄</h2>
+      <p class="text-md md:text-lg leading-relaxed mb-6 font-sans max-w-lg select-text">
+
+        My name is <strong>Aditya Kumar Singh</strong>, and I am an ambitious and dedicated <strong>Information Technology professional</strong>
+        from <strong>Durgapur, West Bengal</strong>. With a solid academic foundation and hands-on project experience, I am passionate about
+        leveraging technology to solve real-world problems and create innovative solutions.
+        <br>
+        <br>
+        I have completed my <strong>Bachelor of Technology (B.Tech) in Information Technology & Engineering</strong> from <strong>Bengal
+        College of Engineering and Technology (BCET), Durgapur</strong>, affiliated with <strong>Maulana Abul Kalam Azad University
+        of Technology (MAKAUT), West Bengal (formerly WBUT)</strong>, achieving a <strong>Cumulative Grade Point Aggregate (CGPA) of
+        8.00</strong>. Prior to this, I completed my <strong>Diploma in Engineering</strong> from <strong>D.R. B.C. Roy Polytechnic, Durgapur,
+        West Bengal</strong>, securing <strong>77%</strong>, and completed my <strong>Madhyamik (10th)</strong> from <strong>DAV Model School, Durgapur</strong>, with <strong>57%.</strong>
+        <br>
+        <br> 
+
+        Throughout my academic journey, I have gained strong technical skills in <strong>programming languages such as Java
+        and Python</strong>, as well as expertise in <strong>DBMS, MySQL, HTML5, and CSS.</strong> I have applied these skills to develop a
+        variety of projects, including:-
+
+        <br>
+        <mark><strong>Supermarket Billing System</strong></mark> – Designed a comprehensive billing and inventory management solution. <br>
+        <mark><strong>Library Management System</strong></mark> – Automated library operations for efficient book tracking and user management. <br>
+        <mark><strong>Movie Recommendation System</strong></mark> – Built a recommendation engine using programming logic to enhance user <br>
+        experience. <br>
+        <mark><strong>E-Commerce Website</strong></mark> – Developed a full-featured online shopping platform with user-friendly interface and
+        database integration. <br>
+        <mark><strong>GYM Website</strong></mark> – Created a responsive and interactive website to manage gym services and memberships.
+        <br> 
+        <br>
+        In addition to my technical skills, I possess strong analytical abilities, problem-solving skills, and a passion
+        for continuous learning. I thrive in environments where I can <strong>combine creativity with technology</strong> to deliver
+        impactful solutions.
+        <br> 
+        <br>
+        Outside of academics and work, I am an avid <strong>cricket player, photography enthusiast, and travel lover</strong>, which
+        help me stay inspired, adaptive, and culturally aware.
+        <br> 
+        <br>
+        I am eager to contribute my <strong>technical expertise, innovative mindset, and project experience</strong> to a dynamic
+        organization, while continuing to grow as a professional in the field of <strong>Information Technology.</strong>
+
+      </p>
+
+      <!-- Tags
+
+
+      <h3 class="text-2xl md:text-3xl font-semibold text-sky-500 mb-6 select-none tracking-wider">FULL STACK DEVELOPER</h3>
+      <div class="flex gap-12 md:gap-16 items-center select-none">
+        <div class="flex flex-col items-center gap-1">
+          <img src="./assets/img/HTML.png" alt="MongoDB Logo" class="object-contain w-16 h-16 drop-shadow-lg" />
+          <span class="text-green-600 text-lg font-bold">H</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <img src="./assets/img/CSS.png" alt="Express.js Logo" class="object-contain w-16 h-16 invert" />
+          <span class="text-white text-lg font-bold">C</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <img src="./assets/img/JAVASCRIPT.png" alt="React.js Logo" class="object-contain w-16 h-16" />
+          <span class="text-sky-500 text-lg font-bold">J</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <img src="./assets/img/SQL.png" alt="Node.js Logo" class="object-contain w-16 h-16 drop-shadow-md" />
+          <span class="text-green-500 text-lg font-bold">S</span>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- Right side illustration --->
+    <div class="flex-1 flex flex-col items-end relative max-w-md md:max-w-lg">
+      <!-- Animated background --->
+      <div class="absolute inset-0 rounded-xl pointer-events-none opacity-20" style="
+          background: url('background.png') center center / cover no-repeat;
+          filter: brightness(0.15) saturate(1.3);
+          animation: floatUpDown 6s ease-in-out infinite;
+          border-radius: 1rem;
+        "></div>
+
+      <!--  Illustration container--> 
+      <div class="relative w-full h-auto rounded-xl p-6 bg-transparent select-none" style="pointer-events:none;">
+        <img src="./assets/img/perfil.png" alt="Illustration"
+          class="rounded-xl shadow-lg object-contain w-full h-auto animate-floatUpDown"
+          style="animation-name: floatUpDown; animation-duration: 6s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;" />
+      </div>
+    </div> 
+  </section>
+
+  <script>
+    // Cross button click: redirect to index.html
+    const closeBtn = document.getElementById('closeBtn');
+    closeBtn.addEventListener('click', () => {
+      window.location.href = "index.html";
+    });
+  </script>
+
+
+<!--==================== NO ONE INSPECT OUR CODE ====================-->
+
+
+  <script>
+    // Disable context menu (right-click)
+    window.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Block common devtools keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U)
+    window.addEventListener('keydown', function(e) {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Detect if devtools is open (rough heuristic) and optionally redirect or hide content
+    (function detectDevTools(){
+      const threshold = 160;
+      let open = false;
+      const element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function () { open = true; throw new Error('devtools'); }
+      });
+      setInterval(() => {
+        open = false;
+        console.log(element);
+        if (open) {
+          // DO NOT rely on this - it's easy to bypass.
+          document.body.innerHTML = '<p style="color:red">Please close developer tools to continue.</p>';
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Freelance Services - Get Professional Work Done</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .creative-heading {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .input-field {
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            font-size: 16px;
+        }
+        
+        .input-field:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 12px;
+            padding: 18px 40px;
+            font-weight: 600;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .service-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .animated-border {
+            position: relative;
+        }
+        
+        .animated-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #ff6b6b);
+            background-size: 400% 400%;
+            border-radius: 15px;
+            z-index: -1;
+            animation: borderGlow 3s ease infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* File upload styling */
+        .file-upload {
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+        
+        .file-upload:hover {
+            border-color: #667eea;
+            background: #f0f4f8;
+        }
+        
+        .file-upload.dragover {
+            border-color: #25D366;
+            background: #e6fffa;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .file-preview {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+        
+        .remove-file {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        /* Budget options */
+        .budget-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .budget-option:hover {
+            transform: translateY(-2px);
+            border-color: #667eea;
+        }
+        
+        .budget-option.selected {
+            border-color: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .custom-budget-input {
+            display: none;
+            margin-top: 10px;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-container {
+                margin: 20px 10px;
+                padding: 25px;
+            }
+            
+            .input-field {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+            
+            .service-card, .budget-option {
+                padding: 15px;
+                margin: 8px;
+            }
+            
+            .file-upload {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-container {
+                margin: 15px 5px;
+                padding: 20px 15px;
+            }
+            
+            .input-field {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .submit-btn {
+                padding: 12px 25px;
+                font-size: 14px;
+                width: 100%;
+            }
+            
+            .service-card, .budget-option {
+                padding: 12px;
+                margin: 6px;
+            }
+            
+            .file-upload {
+                padding: 15px;
+            }
+            
+            .file-preview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Animation for form elements */
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Loading animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #25D366;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;" onkeydown="return disableInspect(event)">
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container py-12">
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <h1 class="creative-heading text-5xl md:text-6xl font-bold mb-6 floating-element">
+                Creative Freelance Services
+            </h1>
+            <p class="text-white text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
+                Professional freelance solutions for your business needs. Get started with our expert services today!
+            </p>
+        </div>
+
+        <!-- Main Form Container -->
+        <div class="form-container mx-auto max-w-4xl p-8 md:p-10" id="formContainer">
+            <div class="animated-border rounded-2xl p-8 md:p-10 bg-white">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
+                    Request a Quote
+                </h2>
+                
+                <form id="freelanceForm" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="animate-in" style="animation-delay: 0.1s">
+                            <label class="block text-gray-700 font-semibold mb-2">Full Name *</label>
+                            <input type="text" id="fullName" class="input-field w-full" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="animate-in" style="animation-delay: 0.2s">
+                            <label class="block text-gray-700 font-semibold mb-2">Email Address *</label>
+                            <input type="email" id="email" class="input-field w-full" placeholder="your.email@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="animate-in" style="animation-delay: 0.3s">
+                            <label class="block text-gray-700 font-semibold mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" class="input-field w-full" placeholder="+91 1234567890" required pattern="[+][0-9]{2} [0-9]{10}">
+                        </div>
+                        
+                        <div class="animate-in" style="animation-delay: 0.4s">
+                            <label class="block text-gray-700 font-semibold mb-2">Company/Organization</label>
+                            <input type="text" id="company" class="input-field w-full" placeholder="Your company name (optional)">
+                        </div>
+                    </div>
+                    
+                    <!-- Service Selection -->
+                    <div class="animate-in" style="animation-delay: 0.5s">
+                        <label class="block text-gray-700 font-semibold mb-4">Select Service Needed *</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="serviceContainer">
+                            <div class="service-card text-center" data-service="web-design">
+                                <i class="fas fa-laptop-code text-3xl mb-3"></i>
+                                <h3 class="font-semibold">Web Design</h3>
+                                <p class="text-sm text-gray-600 mt-1">Responsive websites</p>
+                            </div>
+                            <div class="service-card text-center" data-service="graphic-design">
+                                <i class="fas fa-paint-brush text-3xl mb-3"></i>
+                                <h3 class="font-semibold">Graphic Design</h3>
+                                <p class="text-sm text-gray-600 mt-1">Logos, banners, etc.</p>
+                            </div>
+                            <div class="service-card text-center" data-service="content-writing">
+                                <i class="fas fa-pen-fancy text-3xl mb-3"></i>
+                                <h3 class="font-semibold">Content Writing</h3>
+                                <p class="text-sm text-gray-600 mt-1">Articles, blogs, copy</p>
+                            </div>
+                            <div class="service-card text-center" data-service="seo">
+                                <i class="fas fa-search text-3xl mb-3"></i>
+                                <h3 class="font-semibold">SEO Services</h3>
+                                <p class="text-sm text-gray-600 mt-1">Search optimization</p>
+                            </div>
+                            <div class="service-card text-center" data-service="social-media">
+                                <i class="fas fa-share-alt text-3xl mb-3"></i>
+                                <h3 class="font-semibold">Social Media</h3>
+                                <p class="text-sm text-gray-600 mt-1">Management & strategy</p>
+                            </div>
+                            <div class="service-card text-center" data-service="other">
+                                <i class="fas fa-plus-circle text-3xl mb-3"></i>
+                                <h3 class="font-semibold">Other Service</h3>
+                                <p class="text-sm text-gray-600 mt-1">Custom requirements</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedService" name="service" required>
+                    </div>
+                    
+                    <!-- Budget Selection -->
+                    <div class="animate-in" style="animation-delay: 0.6s">
+                        <label class="block text-gray-700 font-semibold mb-4">Choose Your Budget Range (₹) *</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="budgetContainer">
+                            <div class="budget-option" data-budget="5000-10000">
+                                <h4 class="font-semibold">₹5,000 - ₹10,000</h4>
+                                <p class="text-sm">Basic Projects</p>
+                            </div>
+                            <div class="budget-option" data-budget="10000-25000">
+                                <h4 class="font-semibold">₹10,000 - ₹25,000</h4>
+                                <p class="text-sm">Standard Projects</p>
+                            </div>
+                            <div class="budget-option" data-budget="25000-50000">
+                                <h4 class="font-semibold">₹25,000 - ₹50,000</h4>
+                                <p class="text-sm">Premium Projects</p>
+                            </div>
+                            <div class="budget-option" data-budget="50000-100000">
+                                <h4 class="font-semibold">₹50,000 - ₹1,00,000</h4>
+                                <p class="text-sm">Enterprise Level</p>
+                            </div>
+                            <div class="budget-option" data-budget="100000+">
+                                <h4 class="font-semibold">₹1,00,000+</h4>
+                                <p class="text-sm">Large Scale Projects</p>
+                            </div>
+                            <div class="budget-option" data-budget="custom">
+                                <h4 class="font-semibold">Custom Budget</h4>
+                                <p class="text-sm">Specify your amount</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedBudget" name="budget" required>
+                        
+                        <!-- Custom Budget Input -->
+                        <div id="customBudgetContainer" class="mt-4 hidden">
+                            <label class="block text-gray-700 font-semibold mb-2">Enter Your Custom Budget (₹)</label>
+                            <div class="relative">
+                                <span class="currency-symbol">₹</span>
+                                <input type="number" id="customBudget" class="input-field w-full pl-10" placeholder="Enter your budget amount" min="1000">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline -->
+                    <div class="animate-in" style="animation-delay: 0.7s">
+                        <label class="block text-gray-700 font-semibold mb-2">Preferred Timeline *</label>
+                        <select id="timeline" class="input-field w-full" required>
+                            <option value="">Select timeline</option>
+                            <option value="urgent">Urgent (Within 1 week)</option>
+                            <option value="1-2-weeks">1-2 Weeks</option>
+                            <option value="2-4-weeks">2-4 Weeks</option>
+                            <option value="1-2-months">1-2 Months</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Reference Links -->
+                    <div class="animate-in" style="animation-delay: 0.8s">
+                        <label class="block text-gray-700 font-semibold mb-2">Reference Links (Optional)</label>
+                        <input type="url" id="referenceLink1" class="input-field w-full mb-3" placeholder="https://example.com/reference-1">
+                        <input type="url" id="referenceLink2" class="input-field w-full" placeholder="https://example.com/reference-2">
+                        <p class="text-sm text-gray-600 mt-2">Add links to websites, designs, or examples you like</p>
+                    </div>
+                    
+                    <!-- Photo Upload -->
+                    <div class="animate-in" style="animation-delay: 0.9s">
+                        <label class="block text-gray-700 font-semibold mb-2">Upload Photos (Optional)</label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <input type="file" id="fileInput" class="file-input" multiple accept="image/*">
+                            <label for="fileInput" class="file-label">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400"></i>
+                                <span class="text-gray-700 font-semibold">Click to upload or drag & drop</span>
+                                <span class="text-sm text-gray-500">PNG, JPG, GIF up to 5MB each</span>
+                            </label>
+                        </div>
+                        
+                        <!-- File preview container -->
+                        <div class="file-preview mt-4" id="filePreview"></div>
+                    </div>
+                    
+                    <!-- Project Details -->
+                    <div class="animate-in" style="animation-delay: 1.0s">
+                        <label class="block text-gray-700 font-semibold mb-2">Project Details *</label>
+                        <textarea id="projectDetails" class="input-field w-full h-32" placeholder="Please describe your project requirements, goals, and any specific details we should know..." required></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center pt-6 animate-in" style="animation-delay: 1.1s">
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Send Quote Request via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer Note -->
+        <div class="text-center mt-8">
+            <p class="text-white opacity-80">
+                We'll respond to your inquiry within 24 hours. Your information is secure with us.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Disable right-click and inspect
+        function disableInspect(e) {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.shiftKey && e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+        }
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('keydown', disableInspect);
+        
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.to('.form-container', {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out'
+            });
+            
+            // Animate each form element sequentially
+            const animatedElements = document.querySelectorAll('.animate-in');
+            animatedElements.forEach((el, index) => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.6, delay: index * 0.1 + 0.5 }
+                );
+            });
+            
+            // Service selection
+            const serviceCards = document.querySelectorAll('.service-card');
+            const selectedServiceInput = document.getElementById('selectedService');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    serviceCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedServiceInput.value = this.getAttribute('data-service');
+                });
+            });
+            
+            // Budget selection
+            const budgetOptions = document.querySelectorAll('.budget-option');
+            const selectedBudgetInput = document.getElementById('selectedBudget');
+            const customBudgetContainer = document.getElementById('customBudgetContainer');
+            const customBudgetInput = document.getElementById('customBudget');
+            
+            budgetOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    budgetOptions.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    const budgetValue = this.getAttribute('data-budget');
+                    selectedBudgetInput.value = budgetValue;
+                    
+                    // Show/hide custom budget input
+                    if (budgetValue === 'custom') {
+                        customBudgetContainer.classList.remove('hidden');
+                        customBudgetInput.setAttribute('required', 'true');
+                    } else {
+                        customBudgetContainer.classList.add('hidden');
+                        customBudgetInput.removeAttribute('required');
+                    }
+                });
+            });
+            
+            // File upload functionality
+            const fileInput = document.getElementById('fileInput');
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const filePreview = document.getElementById('filePreview');
+            const uploadedFiles = [];
+            
+            // Drag and drop events
+            fileUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+            
+            fileUploadArea.addEventListener('dragleave', function() {
+                this.classList.remove('dragover');
+            });
+            
+            fileUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+            
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+            
+            function handleFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.type.startsWith('image/') && file.size <= 5 * 1024 * 1024) {
+                        uploadedFiles.push(file);
+                        previewFile(file);
+                    }
+                }
+            }
+            
+            function previewFile(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    previewItem.innerHTML = `
+                        <img src="${e.target.result}" alt="Uploaded reference image ${file.name}">
+                        <button type="button" class="remove-file" onclick="removeFile(this, '${file.name}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    filePreview.appendChild(previewItem);
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            window.removeFile = function(button, fileName) {
+                const previewItem = button.parentElement;
+                previewItem.remove();
+                
+                const index = uploadedFiles.findIndex(file => file.name === fileName);
+                if (index !== -1) {
+                    uploadedFiles.splice(index, 1);
+                }
+            };
+            
+            // Form submission
+            const form = document.getElementById('freelanceForm');
+            const loading = document.getElementById('loading');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const service = selectedServiceInput.value;
+                const budget = selectedBudgetInput.value;
+                const timeline = document.getElementById('timeline').value;
+                const projectDetails = document.getElementById('projectDetails').value;
+                const company = document.getElementById('company').value;
+                const referenceLink1 = document.getElementById('referenceLink1').value;
+                const referenceLink2 = document.getElementById('referenceLink2').value;
+                const customBudget = customBudgetInput.value;
+                
+                if (!fullName || !email || !phone || !service || !budget || !timeline || !projectDetails) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                if (budget === 'custom' && !customBudget) {
+                    alert('Please enter your custom budget amount.');
+                    return;
+                }
+                
+                // Show loading
+                loading.style.display = 'flex';
+                
+                // Format final budget display
+                let finalBudget = '';
+                if (budget === 'custom') {
+                    finalBudget = `₹${parseInt(customBudget).toLocaleString('en-IN')}`;
+                } else {
+                    finalBudget = budget.replace(/-/g, ' - ₹').replace('+', '+');
+                    if (!finalBudget.includes('₹')) {
+                        finalBudget = '₹' + finalBudget;
+                    }
+                }
+                
+                // Format WhatsApp message
+                const message = `🌟 *New Freelance Quote Request* 🌟
+                
+👤 *Client Information:*
+• Name: ${fullName}
+• Email: ${email}
+• Phone: ${phone}
+• Company: ${company || 'Not specified'}
+
+🛠️ *Service Required:* ${service.replace(/-/g, ' ').toUpperCase()}
+💰 *Budget Range:* ${finalBudget}
+⏰ *Timeline:* ${timeline}
+
+${referenceLink1 ? `🔗 *Reference Link 1:* ${referenceLink1}` : ''}
+${referenceLink2 ? `🔗 *Reference Link 2:* ${referenceLink2}` : ''}
+${uploadedFiles.length > 0 ? `📷 *Photos Attached:* ${uploadedFiles.length} image(s)` : ''}
+
+📋 *Project Details:*
+${projectDetails}
+
+Let's discuss this opportunity!`;
+
+                // Encode message for WhatsApp URL
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappNumber = '7384215381';
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                
+                // Simulate sending
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                    window.open(whatsappURL, '_blank');
+                    
+                    // Reset form
+                    form.reset();
+                    serviceCards.forEach(c => c.classList.remove('selected'));
+                    budgetOptions.forEach(o => o.classList.remove('selected'));
+                    selectedServiceInput.value = '';
+                    selectedBudgetInput.value = '';
+                    customBudgetContainer.classList.add('hidden');
+                    filePreview.innerHTML = '';
+                    uploadedFiles.length = 0;
+                    
+                    // Show success message
+                    alert('Your quote request has been prepared! WhatsApp will open to send your message.');
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
+
